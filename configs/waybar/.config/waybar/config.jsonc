@@ -1,0 +1,243 @@
+{
+    "spacing": 2,
+    "margin-top": 3,
+    "margin-bottom": -3,
+    "modules-left": [
+        "idle_inhibitor",
+        // "" include media controls here?
+        "battery",
+        "sway/workspaces",
+        "sway/scratchpad",
+        "group/music"
+    ],
+    "modules-center": [
+        "pulseaudio",
+        "clock",
+        "backlight"
+    ],
+    "modules-right": [
+        "privacy",
+        "tray",
+        "bluetooth",
+        "network",
+        "group/hardware",
+        "group/menu"
+    ],
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰷛 ",
+            "deactivated": "󰍹 "
+        },
+        "timeout": 30,
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 50,
+            "critical": 25 
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["","","",""],
+        "format-charging": "󰚥  {capacity}%",
+        "max-length": 7,
+        "tooltip-format": "{time} | {health}%"
+    },
+
+    "pulseaudio": {
+        "format": "  {volume}%",
+        "format-muted": "  {volume}%",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 1
+    },
+
+    "clock": {
+        "format-alt": "{:%H:%M %d-%b-%}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                  "months":     "<span color='#ffead3'><b>{}</b></span>",
+                  "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                  "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                  "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                  "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        } 
+    },
+
+    "backlight": {
+        "format": "󰃞  {percent}%",
+        "on-click": "brightnessctl set 50%"
+    },
+
+    "tray": {
+        "icon-size": 24,
+        "spacing": 8
+    },
+
+    "bluetooth": {
+        "format": "DEFAULT",
+        "format-disabled": "󰂲",
+        "format-on": "󰂯",
+        "format-off": "OFF",
+        "format-no-controller": "NO CON",
+        "on-click": "blueman-manager"
+    },
+
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "{icon}",
+        "format-disconnect": "{icon}",
+        "format-icons": {
+            "wifi": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+            "ethernet": "",
+            "disconneted": ""
+        },
+        "tooltip-format-wifi": "{essid} UP {bandwidthUpBytes} DOWN {bandwidthDownBytes} {frequency}GHz",
+        "tooltip-format-ethernet": "{ipaddr} UP {bandwidthUpBytes} DOWN {bandwidthDownBytes} {frequency}GHz",
+        "tooltip-format-disconnected": "DISCONNECTED",
+        "on-click": "kitty nmtui"
+    },
+
+    "group/music": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "not-power",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/logo",
+            "mpris#prev",
+            "mpris#control",
+            "mpris#next",
+            "mpris#info"
+        ]
+    },
+    "custom/logo": {
+        "format": "", 
+        "tooltip": false,
+        "on-click": "kitty ytm"
+    },
+    "mpris#prev": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "playerctl previous"
+    },
+    "mpris#next": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "playerctl next"
+    },
+    "mpris#control": {
+        "interval": 1,
+        "format": "{status_icon}",
+        "status-icons": {
+            "paused": "",
+            "playing": "",
+            "stopped": ""
+        },
+        "on-click": "playerctl play-pause"
+    },
+    "mpris#info": {
+        "interval": 1,
+        "dynamic-len": 30,
+        "dynamic-importance-order": [
+            "title",
+            "artist",
+            "position",
+            "length",
+            "album"
+        ],
+        "format": "{dynamic}"
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/hw-icon",
+            "cpu",
+            "load",
+            "memory",
+            "disk"
+        ]
+    },
+    
+    "custom/hw-icon": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "kitty btop"
+    },
+    "cpu": {
+        "format": "CPU {usage}%"
+    },
+    "load": {
+        "format": "LOAD {}%"
+    },
+    "memory": {
+        "format": "MEM {percentage}%"
+    },
+    "disk": {
+        "format": "DISK {percentage_used}%/{total}"
+    },
+
+    "group/menu": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot",
+            "custom/logout"
+        ]
+    },
+    
+    // Custom Modules
+    "custom/quit": {
+        "format": "󰈆",
+        "tooltip": false,
+        "on-click": "swaymsg exit"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "shutdown"
+    },
+    "custom/lock": {
+        "format": "󰌾",
+        "tooltip": false,
+        "on-click": "swaylock --image=\"~/.dotfiles/res/images/atoms.png\""
+    },
+    "custom/reboot": {
+        "exec": "uptime -p",
+        "interval": 60,
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "{}",
+        "on-click": "systemctl reboot"
+    }
+}
