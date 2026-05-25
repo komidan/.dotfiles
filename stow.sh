@@ -12,6 +12,7 @@ CONFIGS=(
     sway
     waybar
     mako
+    fuzzel
 )
 
 # terrible fix but meh, you get a conflict error from stow otherwise
