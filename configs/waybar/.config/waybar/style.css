@@ -26,7 +26,7 @@
 }
 
 window#waybar {
-    background: transparent;
+    background: @thm_bg_dim;
     color: @thm_fg;
 }
 
@@ -37,16 +37,14 @@ window#waybar {
 #clock,
 #backlight,
 #bluetooth,
+#menu,
 #network {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
     margin: 0;
     padding: 4px 16px;
 }
 
 /* Idle Inhibitor */
 #idle_inhibitor {
-    margin-left: 5px;
     min-width: 20px;
 }
 #idle_inhibitor.activated {
@@ -58,8 +56,6 @@ window#waybar {
 
 /* Workspaces */
 #workspaces {
-    background: @thm_term_bg;
-    border: 2px solid @thm_bg2;
     padding: 0 4px;
 }
 #workspaces button {
@@ -129,8 +125,6 @@ window#waybar {
 
 /* Music Player */
 #music {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
     padding: 4px 12px;
 }
 #custom-logo.Playing {
@@ -159,9 +153,7 @@ window#waybar {
 
 /* Custom Hardware Menu */
 #hardware {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    padding: 4px 12px;
+    margin-left: 12px;
 }
 #cpu, #load, #memory {
     padding-right: 12px;
@@ -177,12 +169,6 @@ window#waybar {
 }
 
 /* Custom Power Menu */
-#menu {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    margin-right: 5px;
-    padding: 4px 12px;
-}
 #custom-reboot,
 #custom-lock,
 #custom-quit,

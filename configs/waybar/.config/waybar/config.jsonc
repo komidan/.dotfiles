@@ -4,7 +4,6 @@
     "margin-bottom": -3,
     "modules-left": [
         "idle_inhibitor",
-        // "" include media controls here?
         "battery",
         "sway/workspaces",
         "sway/scratchpad",
@@ -183,7 +182,7 @@
     },
     
     "custom/hw-icon": {
-        "format": " ",
+        "format": "",
         "tooltip": false,
         "on-click": "kitty btop"
     },
