@@ -248,6 +248,7 @@ bindsym $mod+r mode "resize"
 # }
 
 exec_always sh -c "pkill waybar; waybar"
+exec_always sh -c "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"
 
 default_border pixel 2
 default_floating_border pixel 2
@@ -265,7 +266,7 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 # ?
 client.background       #ff0000
 
-seat seat0 xcursor_theme Future-cursors 36
+seat seat0 xcursor_theme Future-cyan-cursors 36
 
 exec mako
 exec lxpolkit

@@ -11,6 +11,7 @@ CONFIGS=(
 	nvim
     sway
     waybar
+    mako
 )
 
 # terrible fix but meh, you get a conflict error from stow otherwise
