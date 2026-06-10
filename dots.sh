@@ -7,7 +7,6 @@ PACKAGES=(
 	# System Packages
 	curl
 	wget
-	build-essential
 	btop
     iotop
 	tree
@@ -16,22 +15,22 @@ PACKAGES=(
 	stow
 	rsync
 	timeshift
-	fd-find
+	fd
 	ripgrep
 	file
 	duf
 	fzf
 	nnn
-    libnotify4
-    libnotify-bin
+    libnotify
+    polkit
+    polkit-gnome
 
 	net-tools
 	iproute2
 	dnsutils
 	nmap
 	traceroute
-	network-manager
-	network-manager-gnome
+	networkmanager
 	blueman
 	bluez
 	bluez-tools
@@ -47,57 +46,49 @@ PACKAGES=(
 
 	thunar
 
-	lxappearance
 	brightnessctl
+    nwg-look
 
-	openssh-client
-	openssh-server
+    openssh
 	keychain
 
 	git
 	jq
-    pipx
-	python3
-	python3-pip
-	python3-venv
-
-    mpv
-    playerctl
+	python-pip
+    python-virtualenv
 
 	kitty
-	sway
-	swaylock
-	swayidle
-	swaybg
+    swaybg
+    swayidle
+    swaylock
 	waybar
 	fuzzel
-	mako-notifier
-	wl-clipboard
-	grim
-	slurp
+    mako
 	imv
 )
 
 mkdir -p "$HOME/Pictures/Screenshots"
 
-sudo apt update
-sudo apt install -y "${PACKAGES[@]}"
+pacman -Sy
+# sudo apt update
+pacman -S --needed "${PACKAGES[@]}"
+# sudo apt install -y "${PACKAGES[@]}"
 
-FONTS=(
-    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IosevkaTerm.zip"
-    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.zip"
-    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
-)
-
-if ! command -v zsh >/dev/null 2>&1; then
-    bash scripts/install-zsh.sh
-fi
-
-if ! command -v nvim >/dev/null 2>&1; then
-    bash scripts/install-nvim.sh
-fi
-
-bash scripts/install-font.sh "${FONTS[@]}"
-bash stow.sh
+# FONTS=(
+#     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IosevkaTerm.zip"
+#     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.zip"
+#     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
+# )
+#
+# if ! command -v zsh >/dev/null 2>&1; then
+#     bash scripts/install-zsh.sh
+# fi
+#
+# if ! command -v nvim >/dev/null 2>&1; then
+#     bash scripts/install-nvim.sh
+# fi
+#
+# bash scripts/install-font.sh "${FONTS[@]}"
+# bash stow.sh
 
 echo "done."

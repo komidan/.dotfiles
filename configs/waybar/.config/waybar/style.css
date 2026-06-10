@@ -22,175 +22,110 @@
 * {
     font-family: 'Symbols Nerd Font Mono', 'JetBrainsMono Nerd Font', monospace;
     font-weight: 900;
-    font-size: 13pt;
+    font-size: 11pt;
 }
 
 window#waybar {
-    background: transparent;
     color: @thm_fg;
+    background: @thm_term_bg;
 }
 
-/* General Style */
 #idle_inhibitor,
-#battery,
+#workspaces,
 #pulseaudio,
 #clock,
-#backlight,
 #bluetooth,
-#network {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    margin: 0;
-    padding: 4px 16px;
+#network,
+#menu,
+#hardware {
+    padding: 0 6px;
+    margin: 4px 0px;
 }
 
 /* Idle Inhibitor */
 #idle_inhibitor {
-    margin-left: 5px;
-    min-width: 20px;
+    margin: 4px 2px;
 }
 #idle_inhibitor.activated {
-    border-top: 2px solid @thm_red;
+    color: @thm_red;
 }
 #idle_inhibitor.deactivated {
-    color: @thm_bg4;
+    color: @thm_bg2;
 }
 
 /* Workspaces */
-#workspaces {
-    background: @thm_term_bg;
-    border: 2px solid @thm_bg2;
-    padding: 0 4px;
-}
 #workspaces button {
-    color: @thm_bg2;
-    font-style: italic;
-    margin: 0; 
-    padding: 0 4px;
+    border: none;
     border-radius: 0;
+    box-shadow: none;
+    background: none;
+    padding: 0 4px;
+    color: @thm_bg2;
+    text-shadow: none;
+    transition: none;
+    -gtk-icon-shadow: none;
+    -gtk-icon-effect: none;
 }
-#workspaces button.focused {
-    color: @thm_purple;
-}
-#workspaces button.urgent {
-    color: @thm_red;
-}
-
-/* Battery */
-#battery {
-    border-top: 2px solid @thm_green;
+#workspaces button.active {
     color: @thm_green;
 }
-#battery.charging {
-    border-top: 2px solid @thm_blue;
-    color: @thm_blue;
-}
-#battery.warning {
-    border-top: 2px solid @thm_yellow;
-    color: @thm_yellow;
-}
-#battery.critical {
-    border-top: 2px solid @thm_red;
-    color: @thm_red;
+#workspaces button:hover {
+    background: @thm_bg_status;
 }
 
-/* PulseAudio */
+/* Volume */
 #pulseaudio.muted {
-    color: @thm_bg4;
+    color: @thm_bg2;
+}
+#pulseaudio.bluetooth {
+    color: @thm_blue;
 }
 
 /* Tray */
 #tray {
-    border-right: 2px solid @thm_bg3;
-    margin-right: 1px;
-}
-#tray widget > image {
-    padding: 0 4px;
-}
+    margin: 8px 4px;
+    padding: 0 8px;
+    border-right: 2px solid @thm_fg_dim;
+} 
 
 /* Bluetooth */
-#bluetooth.disabled {
+#bluetooth.disabled,
+#bluetooth.no-controller,
+#bluetooth.off {
     color: @thm_bg2;
 }
 #bluetooth.on {
-    border-top: 2px solid @thm_green;
+    color: @thm_green;
 }
 #bluetooth.connected {
-    border-top: 2px solid @thm_aqua;
+    color: @thm_blue;
 }
 
 /* Network */
 #network.disabled, #network.disconnected {
-    border-top: 2px solid @thm_red;
+    color: @thm_red;
 }
-#network.linked, #network.wifi, #nework.ethernet {
-    border-top: 2px solid @thm_green;
-}
-
-/* Music Player */
-#music {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    padding: 4px 12px;
-}
-#custom-logo.Playing {
+#network.linked, #network.wifi, #network.ethernet {
     color: @thm_green;
 }
-#custom-logo.Paused {
-    color: @thm_yellow;
-}
-#custom-logo.Stopped {
-    color: @thm_bg2;
-}
-#mpris.prev {
-    border-left: 2px solid @thm_bg2;
-    padding: 0 6px;
-    padding-left: 12px;
-    margin-left: 12px;
-}
-#mpris.control, #mpris.next {
-    padding: 0 6px;
-}
-#mpris.info {
-    border-left: 2px solid @thm_bg2;
-    padding: 0 12px;
-    margin-left: 6px;
-}
 
-/* Custom Hardware Menu */
-#hardware {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    padding: 4px 12px;
-}
-#cpu, #load, #memory {
-    padding-right: 12px;
+/* Hardware */
+#cpu, #load, #memory, #disk {
     border-right: 2px solid @thm_bg2;
-}
-#cpu, #memory, #load, #disk {
-    margin: 0 6px;
+    padding: 0 8px;
 }
 #disk {
     border-right: 2px solid @thm_bg2;
-    padding-right: 12px;
-    margin-right: 12px;
+    margin-right: 8px;
 }
 
-/* Custom Power Menu */
-#menu {
-    border: 2px solid @thm_bg2;
-    background: @thm_term_bg;
-    margin-right: 5px;
-    padding: 4px 12px;
-}
+/* Menu */
 #custom-reboot,
+#custom-sleep,
 #custom-lock,
-#custom-quit,
-#custom-logout,
-#custom-power {
-    margin: 0 6px;
+#custom-quit {
+    padding: 0 3px;
 }
 #custom-reboot {
-    border-right: 2px solid @thm_bg2;
-    padding-right: 12px;
+    margin-right: 3px;
 }

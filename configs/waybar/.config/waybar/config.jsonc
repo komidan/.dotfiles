@@ -1,19 +1,17 @@
 {
-    "spacing": 2,
-    "margin-top": 3,
-    "margin-bottom": -3,
+    // "spacing": 8,
+    // "margin-bottom": 0,
+    "height": 28,
     "modules-left": [
         "idle_inhibitor",
-        // "" include media controls here?
-        "battery",
-        "sway/workspaces",
-        "sway/scratchpad",
-        "group/music"
+        // "battery",
+        "niri/workspaces"
+        // "group/music"
     ],
     "modules-center": [
         "pulseaudio",
-        "clock",
-        "backlight"
+        "clock"
+        // "backlight"
     ],
     "modules-right": [
         "privacy",
@@ -27,8 +25,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰷛 ",
-            "deactivated": "󰍹 "
+            "activated": "󰷛",
+            "deactivated": "󰍹"
         },
         "timeout": 30,
         "tooltip": false
@@ -47,6 +45,10 @@
         "tooltip-format": "{time} | {health}%"
     },
 
+    "niri/workspaces": {
+        "disable-markup": true
+    },
+
     "pulseaudio": {
         "format": "  {volume}%",
         "format-muted": "  {volume}%",
@@ -56,7 +58,7 @@
     },
 
     "clock": {
-        "format-alt": "{:%H:%M %d-%b-%}",
+        "format-alt": "{:%H:%M %d-%b-%y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode"          : "month",
@@ -86,11 +88,12 @@
     },
 
     "tray": {
-        "icon-size": 24,
+        "icon-size": 20,
         "spacing": 8
     },
 
     "bluetooth": {
+        // "controller": "",
         "format": "DEFAULT",
         "format-disabled": "󰂲",
         "format-on": "󰂯",
@@ -105,7 +108,7 @@
         "format-disconnect": "{icon}",
         "format-icons": {
             "wifi": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-            "ethernet": "",
+            "ethernet": "󱘖",
             "disconneted": ""
         },
         "tooltip-format-wifi": "{essid} UP {bandwidthUpBytes} DOWN {bandwidthDownBytes} {frequency}GHz",
@@ -183,7 +186,7 @@
     },
     
     "custom/hw-icon": {
-        "format": " ",
+        "format": "󰞱",
         "tooltip": false,
         "on-click": "kitty btop"
     },
@@ -209,10 +212,10 @@
         },
         "modules": [
             "custom/power",
+            "custom/sleep",
             "custom/quit",
             "custom/lock",
-            "custom/reboot",
-            "custom/logout"
+            "custom/reboot"
         ]
     },
     
@@ -220,12 +223,17 @@
     "custom/quit": {
         "format": "󰈆",
         "tooltip": false,
-        "on-click": "swaymsg exit"
+        "on-click": "niri msg action quit"
+    },
+    "custom/sleep": {
+        "format": "󰤄",
+        "tooltip": false,
+        "on-click": "systemctl suspend"
     },
     "custom/power": {
         "format": "",
         "tooltip": false,
-        "on-click": "shutdown"
+        "on-click": "systemctl poweroff"
     },
     "custom/lock": {
         "format": "󰌾",

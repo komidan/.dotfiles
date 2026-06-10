@@ -1,5 +1,10 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export QT_QPA_PLATFORMTHEME=qt6ct
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
+export XDG_CURRENT_DESKTOP=niri
+export XDG_SESSION_TYPE=wayland
+export PATH="$PATH:/home/maya/.local/bin" # PIPX
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -9,12 +14,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="maya"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,7 +46,7 @@ ZSH_THEME="maya"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -104,12 +103,17 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ls="ls -a --color=auto"
-
-# nnn
 alias n3="nnn -Hdi"
-export NNN_OPENER=nvim
 
-export PATH="$PATH;$HOME/.local/bin"
-
-# Created by `pipx` on 2026-05-20 18:21:55
-export PATH="$PATH:/home/maya/.local/bin"
+# Custom Startup
+if [[ $(tty) == "/dev/tty1" && -z "$WAYLAND_DISPLAY" && -z "$DISPLAY" ]]; then
+    echo -n "Start Niri? (y/N)"
+    read -r -t 3 a
+    case "$a" in
+        [Nn]|[Nn][Oo])
+            ;;
+        *)
+            dbus-run-session niri
+            ;;
+    esac
+fi

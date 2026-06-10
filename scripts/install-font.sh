@@ -21,6 +21,12 @@ extract() {
     esac
 }
 
+cleanup() {
+    if rm -rf "$TMPDIR"; then
+        echo "[$0] deleted '$TMPDIR'"
+    fi
+}
+
 install() {
     local url="$1"
 
@@ -37,6 +43,7 @@ install() {
 
     echo "[$0] downloading '$fname'"
     if ! curl -fsSL "$url" -o "$TMPDIR/$fname"; then
+        cleanup
         echo "[$0] failed to download from '$url'"
         return 1
     fi
@@ -62,10 +69,8 @@ install() {
         (( count++ ))
     done <<< "$fonts"
 
+    cleanup
     echo "[$0] installed $count font(s) from '$fname'"
-    if rm -rf "$TMPDIR"; then
-        echo "[$0] deleted '$TMPDIR'"
-    fi
 }
 
 failed=0

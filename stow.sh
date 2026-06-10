@@ -5,14 +5,14 @@ set -e
 DOTFILES="$HOME/.dotfiles/configs"
 
 CONFIGS=(
+    kitty
 	zsh
-	kitty
 	tmux
+    niri
 	nvim
-    sway
-    waybar
-    mako
-    fuzzel
+	waybar
+	fuzzel
+	mako
 )
 
 # terrible fix but meh, you get a conflict error from stow otherwise
