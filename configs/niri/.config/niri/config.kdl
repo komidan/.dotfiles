@@ -660,5 +660,8 @@ spawn-sh-at-startup "swaybg -i ~/Pictures/Backgrounds/rubiks-cube.png -m fill"
 spawn-sh-at-startup "swayidle -w timeout 300 'swaylock --image=$HOME/.dotfiles/res/images/atoms.png -f -c 000000' timeout 600 'swaymsg \"output * power off\"' resume 'swaymsg \"output * power on\"' before-sleep 'swaylock --image=$HOME/.dotfiles/res/images/atoms.png -f -c 0000000'"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+
 prefer-no-csd
 spawn-at-startup "mako"

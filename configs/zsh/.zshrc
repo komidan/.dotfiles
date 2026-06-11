@@ -1,11 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export QT_QPA_PLATFORMTHEME=qt6ct
-export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"
-export XDG_CURRENT_DESKTOP=niri
-export XDG_SESSION_TYPE=wayland
-export PATH="$PATH:/home/maya/.local/bin" # PIPX
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -101,19 +93,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 alias ls="ls -a --color=auto"
 alias n3="nnn -Hdi"
-
-# Custom Startup
-if [[ $(tty) == "/dev/tty1" && -z "$WAYLAND_DISPLAY" && -z "$DISPLAY" ]]; then
-    echo -n "Start Niri? (y/N)"
-    read -r -t 3 a
-    case "$a" in
-        [Nn]|[Nn][Oo])
-            ;;
-        *)
-            dbus-run-session niri
-            ;;
-    esac
-fi
